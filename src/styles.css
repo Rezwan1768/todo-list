@@ -1,0 +1,348 @@
+:root {
+    --dark-gray: #2C2C2C;
+    --mint-green: #98FF98;
+    --midnight-blue: #2C3E50;
+    --ligt-blue: rgb(213, 225, 238);
+    --small-font: 16px;
+    --medium-font: 18px;
+}
+
+html {
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    height: 100vh;
+    background-color: var(--midnight-blue, darkblue);
+    color: var(--mint-green, white);
+    font-size: var(--medium-font);
+}
+
+.project-section {
+    grid-column: 1 / 2;
+    min-width: 250px;
+    background-color: var(--dark-gray, black);
+    color: var(--mint-green);
+    overflow-y: auto;
+}
+
+.task-section {
+    grid-column: 2 / 3;
+    padding-left: 5px;
+    overflow-y: auto;
+}
+
+/* --------------------Project Styles--------------------*/
+
+.project-section .header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    font-weight: bold;
+    font-size: var(--medium-font);
+}
+
+.project-section .header>button {
+    font-weight: bold;
+    width: 50px;
+    height: 25px;
+    cursor: pointer;
+}
+
+.project-section .header>button:hover {
+    background-color: var(--mint-green);
+}
+
+.project-section>form>.name-field {
+    font-size: var(--small-font);
+    font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-bottom: 10px;
+}
+
+.name-field>input {
+    font-size: inherit;
+    padding: 2px;
+}
+
+.name-field>button {
+    width: 50px;
+    height: 25px;
+    font-weight: bold;
+}
+
+form.hidden {
+    display: none;
+}
+
+button.project {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+    width: 100%;
+    padding: 5px;
+    font-size: var(--small-font);
+    font-weight: bold;
+    background-color: rgb(213, 225, 238);
+}
+
+button.project:hover {
+    cursor: pointer;
+}
+
+button.project .title {
+    width: 250px;
+    overflow-wrap: break-word;
+    white-space: normal;
+}
+
+button.project .controls {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+button.project .controls>* {
+    width: 60px;
+    padding: 2px 0;
+    font-weight: bold;
+    border: 2px solid var(--dark-gray);
+}
+
+.project .controls>*:hover {
+    background-color: midnightblue;
+    color: white;
+    cursor: pointer;
+}
+
+button.project.selected {
+    background-color: var(--mint-green);
+}
+
+/*---------------------------Task Styles------------------------*/
+.task-section .header {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 50px 5px 0;
+    border-top: 2px solid var(--mint-green);
+    border-bottom: 2px solid var(--mint-green);
+    font-weight: bold;
+}
+
+.task-section .header button {
+    width: 50px;
+    height: 25px;
+}
+
+.task-section .header button:hover {
+    background-color: var(--mint-green);
+    cursor: pointer;
+}
+
+.task-section .task-container {
+    padding-right: 5px;
+}
+
+.task-container .label {
+    height: 30px;
+}
+
+.task-container .label,
+.task-item .task-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    padding: 0 5px;
+}
+
+.label>p:first-child,
+.task-header>p:first-child {
+    width: 300px;
+}
+
+.label>p:not(:first-child),
+.task-header>p:not(:first-child) {
+    width: 150px;
+}
+
+.task-item .task-header {
+    margin-bottom: 10px;
+}
+
+.task-header .title {
+    font-weight: bold;
+    overflow-wrap: break-word;
+    /* Break long words and wrap */
+    white-space: normal;
+}
+
+button.task-item {
+    min-height: 100px;
+    border: 1px solid black;
+    background-color: var(--ligt-blue);
+    width: 100%;
+    text-align: left;
+    font-size: var(--small-font);
+    margin-bottom: 5px;
+    padding: 10px 5px;
+
+}
+
+button.task-item:hover {
+    outline: 2px solid var(--mint-green);
+    cursor: pointer;
+}
+
+
+/* Expand/collapse task item button on click */
+.task-item div.task-details {
+    display: none;
+}
+
+.task-item.expanded div.task-details {
+    display: block;
+}
+
+.task-details .task-description {
+    overflow-wrap: break-word;
+    white-space: pre-line;;
+    line-height: 1.3;
+    word-spacing: 5px;
+    font-size: var(--medium-font);
+}
+
+.task-details .task-control {
+    margin-left: auto;
+    width: 350px;
+    margin-left: auto;
+    margin-top: 10px;
+}
+
+.task-control>* {
+    width: 100px;
+    height: 30px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.task-control>button:hover {
+    background-color: var(--mint-green);
+}
+
+.task-control>*:not(:last-child) {
+    margin-right: 10px;
+}
+
+/* completed task */
+.completed-task {
+    opacity: 0.6;
+}
+
+.add-task-message {
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+}
+
+.add-task-message button {
+    display: block;
+    margin: auto;
+    font-size: 20px;
+    font-weight: bold;
+    height: 50px;
+    width: 100px;
+    margin-top: 10px;
+}
+
+.add-task-message button:hover {
+    background-color: var(--mint-green);
+    cursor: pointer;
+}
+
+/*----------------------Form Styles-------------------------*/
+dialog {
+    margin: auto;
+    background-color: var(--dark-gray);
+    color: var(--mint-green);
+    padding: 20px;
+}
+
+form.add-task .input-field {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 5px;
+    align-items: center;
+}
+
+form.add-task .input-field>label {
+    width: 80px;
+}
+
+form.add-task .input-field>input {
+    flex-grow: 1;
+}
+
+form.add-task div.textarea {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+div.textarea label {
+    margin-bottom: 5px;
+}
+
+div.textarea textarea {
+    resize: none;
+    width: 500px;
+    height: 200px;
+}
+
+form.add-task .input-field>input,
+form.add-task .input-field>select,
+div.textarea textarea {
+    padding: 5px;
+    font-size: var(--small-font);
+}
+
+form.add-task .form-controls {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+form.add-task .form-controls>button {
+    width: 80px;
+    height: 40px;
+    font-size: var(--medium-font);
+    font-weight: bold;
+    background-color: var(--mint-green);
+}
+
+form.add-task .form-controls>button:hover {
+    background-color: var(--ligt-blue);
+    cursor: pointer;
+}
